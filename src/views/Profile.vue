@@ -4,7 +4,18 @@
       <h3 class="text-center">Profile</h3>
       <div class="list-group">
         <Tweet v-for="i in this.$store.getters.getMyTweets" :key="i.id">
-
+          <h6 slot="username" class="mb-1">
+            {{ i.email }}
+          </h6>
+          <button slot="delete-button" class="btn btn-sm btn-danger">
+            delete
+          </button>
+          <p slot="text" class="mb-1">
+            {{ i.content }}
+          </p>
+          <small slot="created_at" class="text-muted">
+            {{ Date.now() }}
+          </small>
         </Tweet>
       </div>
     </div>

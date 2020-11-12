@@ -3,7 +3,20 @@
     <div class="col-md-10 mx-auto">
       <h3 class="text-center">Feed</h3>
       <div class="list-group">
-        <Tweet v-for="i in this.$store.getters.getAllTweets" :key="i.id"></Tweet>
+        <Tweet v-for="i in this.$store.getters.getAllTweets" :key="i.id" :class="{'active' : i.email === activeUserEmail}">
+          <h6 slot="username" class="mb-1">
+            {{ i.email }}
+          </h6>
+          <button slot="delete-button" class="btn btn-sm btn-danger">
+            delete
+          </button>
+          <p slot="text" class="mb-1">
+            {{ i.content }}
+          </p>
+          <small slot="created_at" class="text-white">
+            {{ Date.now() }}
+          </small>
+        </Tweet>
       </div>
     </div>
   </div>
@@ -16,10 +29,14 @@
     name: "Feed",
     components: {
       Tweet
+    },
+    data() {
+      return{
+        activeUserEmail: this.$store.getters.getUserEmail
+      }
     }
   }
 </script>
 
 <style scoped>
-
 </style>
