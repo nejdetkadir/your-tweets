@@ -66,6 +66,16 @@ const actions = {
     } else {
       swal("Error!", "There is a error!", "error");
     }
+  },
+  deleteTweet({dispatch}, data) {
+    Vue.axios.delete(`${process.env.VUE_APP_FIREBASE_DB_URL}/tweets/${data.id}.json`)
+      .then(() => {
+        dispatch("initAllTweets");
+        swal("Aww yiss!", "Deleted your tweet!", "success")
+      })
+      .catch(() => {
+        swal("Error!", "There is a error!", "error");
+      });
   }
 };
 

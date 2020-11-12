@@ -7,7 +7,7 @@
           <h6 slot="username" class="mb-1">
             {{ i.email }}
           </h6>
-          <button slot="delete-button" class="btn btn-sm btn-danger">
+          <button v-if="activeUserEmail === i.email" slot="delete-button" @click.prevent="deleteTweet(i)" class="btn btn-sm btn-danger">
             delete
           </button>
           <p slot="text" class="mb-1">
@@ -33,6 +33,13 @@
     data() {
       return{
         activeUserEmail: this.$store.getters.getUserEmail
+      }
+    },
+    methods: {
+      deleteTweet(tweet) {
+        this.$store.dispatch("deleteTweet", {
+          ...tweet
+        })
       }
     }
   }

@@ -7,7 +7,7 @@
           <h6 slot="username" class="mb-1">
             {{ i.email }}
           </h6>
-          <button slot="delete-button" class="btn btn-sm btn-danger">
+          <button @click.prevent="deleteTweet(i)" slot="delete-button" class="btn btn-sm btn-danger">
             delete
           </button>
           <p slot="text" class="mb-1">
@@ -29,6 +29,13 @@
     name: "Feed",
     components: {
       Tweet
+    },
+    methods: {
+      deleteTweet(tweet) {
+        this.$store.dispatch("deleteTweet", {
+          ...tweet
+        })
+      }
     }
   }
 </script>
