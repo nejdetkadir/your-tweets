@@ -11,6 +11,9 @@
     name: 'App',
     components: {
       Header,
+    },
+    created() {
+      console.log(this.$store.getters.getTitle);
     }
   }
 </script>
