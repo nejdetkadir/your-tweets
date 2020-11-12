@@ -1,8 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
-import TweetList from "@/components/TweetList";
 import Form from "@/components/Form";
 import Auth from "@/components/Auth";
+import Feed from "@/views/Feed";
+import Profile from "@/views/Profile";
 
 import {store} from "@/store";
 
@@ -12,7 +13,7 @@ const routes = [
   {
     path: '/',
     name: 'Feed',
-    component: TweetList,
+    component: Feed,
     beforeEnter(to, from, next) {
       if (store.getters.isAuthenticated) {
         next();
@@ -37,7 +38,7 @@ const routes = [
   {
     path: '/profile',
     name: 'Profile',
-    component: TweetList,
+    component: Profile,
     beforeEnter(to, from, next) {
       if (store.getters.isAuthenticated) {
         next();
