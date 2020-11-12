@@ -4,23 +4,48 @@ import TweetList from "@/components/TweetList";
 import Form from "@/components/Form";
 import Auth from "@/components/Auth";
 
+import {store} from "@/store";
+
 Vue.use(VueRouter)
 
 const routes = [
   {
     path: '/',
     name: 'Feed',
-    component: TweetList
+    component: TweetList,
+    beforeEnter(to, from, next) {
+      if (store.getters.isAuthenticated) {
+        next();
+      } else {
+        next("/auth");
+      }
+    }
   },
   {
     path: '/new',
     name: 'New',
-    component: Form
+    component: Form,
+    beforeEnter(to, from, next) {
+      if (store.getters.isAuthenticated) {
+        next();
+      } else {
+        next("/auth");
+      }
+    }
+
   },
   {
     path: '/profile',
     name: 'Profile',
-    component: TweetList
+    component: TweetList,
+    beforeEnter(to, from, next) {
+      if (store.getters.isAuthenticated) {
+        next();
+      } else {
+        next("/auth");
+      }
+    }
+
   },
   {
     path: '/auth',

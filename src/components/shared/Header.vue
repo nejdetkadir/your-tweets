@@ -16,13 +16,21 @@
           <a class="nav-link">New</a>
         </router-link>
       </ul>
+      <form v-if="this.$store.getters.isAuthenticated" class="form-inline my-2 my-lg-0">
+        <button @click.prevent="logout()" class="btn btn-outline-danger my-2 my-sm-0" type="submit">Logout</button>
+      </form>
     </div>
   </nav>
 </template>
 
 <script>
   export default {
-    name: "Header"
+    name: "Header",
+    methods: {
+      logout() {
+        this.$store.dispatch("logout");
+      }
+    }
   }
 </script>
 

@@ -13,7 +13,7 @@
       Header,
     },
     created() {
-      console.log(this.$store.getters.getTitle);
+      this.$store.dispatch("initToken");
     }
   }
 </script>
