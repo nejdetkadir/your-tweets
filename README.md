@@ -16,6 +16,13 @@ You can share your tweets in here anymore! Created for learning VueJS.
 npm install
 ```
 
+### Environment variables
+Create a file named ".env.local" in the root directory and fill its contents as follows.
+```ruby
+VUE_APP_FIREBASE_API_KEY = XXX
+VUE_APP_FIREBASE_DB_URL = XXX
+```
+
 ### Compiles and hot-reloads for development
 ```
 npm run serve
