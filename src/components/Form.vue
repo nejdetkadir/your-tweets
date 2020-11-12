@@ -3,9 +3,9 @@
     <div class="col-md-10 mx-auto">
       <div class="card shadow mb-5 bg-white rounded" style="width: 100%;">
         <div class="card-body">
-          <form>
+          <form @submit.prevent="onSaveTweet()">
             <div class="form-group">
-              <textarea id="tweet-area" class="form-control" rows="4" placeholder="What's happening?"></textarea>
+              <textarea v-model="text" id="tweet-area" class="form-control" rows="4" placeholder="What's happening?"></textarea>
             </div>
             <button class="btn btn-sm btn-info float-right">Tweet</button>
           </form>
@@ -17,7 +17,20 @@
 
 <script>
   export default {
-    name: "Form"
+    name: "Form",
+    data() {
+      return{
+        text: null
+      }
+    },
+    methods: {
+      onSaveTweet() {
+        this.$store.dispatch("saveTweet", {
+          text: this.text
+        });
+        this.text = null
+      }
+    }
   }
 </script>
 

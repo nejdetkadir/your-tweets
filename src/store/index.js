@@ -2,26 +2,37 @@ import Vue from 'vue';
 import Vuex from 'vuex';
 import swal from 'sweetalert';
 import router from "@/router";
+import Tweet from "@/store/modules/Tweet";
 
 Vue.use(Vuex);
 
 export const store = new Vuex.Store({
   state: {
-    token: ''
+    token: '',
+    email: ''
   },
   getters: {
     isAuthenticated(state) {
       return state.token !== "";
+    },
+    getUserEmail(state) {
+      return state.email;
     }
   },
   mutations: {
     setToken(state, token){
       state.token = token;
     },
+    setEmail(state, email) {
+      state.email = email;
+    },
     clearToken(state){
       state.token = "";
       localStorage.removeItem("token");
       router.replace("/auth");
+    },
+    clearEmail(state) {
+      state.email = "";
     }
   },
   actions: {
@@ -33,6 +44,7 @@ export const store = new Vuex.Store({
         returnSecureToken: true
       }).then((res) => {
         commit("setToken", res.data.idToken);
+        commit("setEmail", res.data.email);
         localStorage.setItem("token", res.data.idToken);
       }).catch(() => {
         swal("Error!", "Please check your information", "error");
@@ -40,16 +52,17 @@ export const store = new Vuex.Store({
     },
     logout({commit}) {
       commit("clearToken");
+      commit("clearEmail");
     },
     initToken({commit}) {
       let token = localStorage.getItem("token");
       if (token) {
         commit("setToken", token);
         router.replace("/");
-      } else {
-        router.replace("/auth");
-        return false
       }
     }
+  },
+  modules: {
+    Tweet
   }
 });

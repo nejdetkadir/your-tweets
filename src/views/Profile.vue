@@ -10,14 +10,14 @@
 </template>
 
 <script>
-import Tweet from "@/components/Tweet";
+  import Tweet from "@/components/Tweet";
 
-export default {
-  name: "Feed",
-  components: {
-    Tweet
+  export default {
+    name: "Feed",
+    components: {
+      Tweet
+    }
   }
-}
 </script>
 
 <style scoped>
