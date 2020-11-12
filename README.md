@@ -1,5 +1,15 @@
 # your-tweets
-You can share your tweets in here anymore!
+You can share your tweets in here anymore! Created for learning VueJS.
+
+![cover](doc/cover.gif)
+
+## USED TOOLS
+- vue-axios
+- vuex
+- vue-router
+
+## DEMO
+[Live demo](https://your-tweets.nejdetkadirr.tech)
 
 ## Project setup
 ```
