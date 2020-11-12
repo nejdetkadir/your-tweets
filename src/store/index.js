@@ -13,7 +13,7 @@ export const store = new Vuex.Store({
   },
   getters: {
     isAuthenticated(state) {
-      return state.token !== "";
+      return state.token !== "" && state.email;
     },
     getUserEmail(state) {
       return state.email;
@@ -29,14 +29,15 @@ export const store = new Vuex.Store({
     clearToken(state){
       state.token = "";
       localStorage.removeItem("token");
-      router.replace("/auth");
     },
     clearEmail(state) {
       state.email = "";
+      localStorage.removeItem("email");
+      router.replace("/auth");
     }
   },
   actions: {
-    auth({commit}, data) {
+    auth({commit, dispatch}, data) {
       const url = data.isRegistered ? `https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=${process.env.VUE_APP_FIREBASE_API_KEY}` : `https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=${process.env.VUE_APP_FIREBASE_API_KEY}`;
       return Vue.axios.post(url, {
         email: data.email,
@@ -45,7 +46,9 @@ export const store = new Vuex.Store({
       }).then((res) => {
         commit("setToken", res.data.idToken);
         commit("setEmail", res.data.email);
+        dispatch("initAllTweets");
         localStorage.setItem("token", res.data.idToken);
+        localStorage.setItem("email", res.data.email);
       }).catch(() => {
         swal("Error!", "Please check your information", "error");
       });
@@ -56,8 +59,10 @@ export const store = new Vuex.Store({
     },
     initToken({commit}) {
       let token = localStorage.getItem("token");
-      if (token) {
+      let email = localStorage.getItem("email");
+      if (token && email) {
         commit("setToken", token);
+        commit("setEmail", email);
         router.replace("/");
       }
     }

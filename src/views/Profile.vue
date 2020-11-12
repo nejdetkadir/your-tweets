@@ -3,7 +3,9 @@
     <div class="col-md-10 mx-auto">
       <h3 class="text-center">Profile</h3>
       <div class="list-group">
-        <Tweet v-for="i in 3" :key="i"></Tweet>
+        <Tweet v-for="i in this.$store.getters.getMyTweets" :key="i.id">
+
+        </Tweet>
       </div>
     </div>
   </div>

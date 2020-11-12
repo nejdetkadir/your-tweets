@@ -14,6 +14,7 @@
     },
     created() {
       this.$store.dispatch("initToken");
+      this.$store.dispatch("initAllTweets");
     }
   }
 </script>
