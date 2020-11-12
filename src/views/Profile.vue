@@ -2,7 +2,10 @@
   <div class="row mt-5">
     <div class="col-md-10 mx-auto">
       <h3 class="text-center">Profile</h3>
-      <div class="list-group">
+      <div class="alert alert-info" v-if="this.$store.getters.getMyTweets.length ===  0">
+        You did not share any tweet yet :(
+      </div>
+      <div v-show="this.$store.getters.getMyTweets.length > 0" class="list-group">
         <Tweet v-for="i in this.$store.getters.getMyTweets" :key="i.id">
           <h6 slot="username" class="mb-1">
             {{ i.email }}
