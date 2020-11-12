@@ -1,26 +1,19 @@
 <template>
   <div class="container mb-5">
     <Header></Header>
-    <Form></Form>
-    <TweetList></TweetList>
+    <router-view/>
   </div>
 </template>
 
 <script>
-  import Header from "@/components/Header";
-  import Form from "@/components/Form";
-  import TweetList from "@/components/TweetList";
-
+  import Header from "@/components/shared/Header";
   export default {
     name: 'App',
     components: {
       Header,
-      Form,
-      TweetList
     }
   }
 </script>
 
 <style>
-
 </style>
