@@ -2,6 +2,7 @@ import Vue from 'vue'
 import VueRouter from 'vue-router'
 import TweetList from "@/components/TweetList";
 import Form from "@/components/Form";
+import Auth from "@/components/Auth";
 
 Vue.use(VueRouter)
 
@@ -20,6 +21,11 @@ const routes = [
     path: '/profile',
     name: 'Profile',
     component: TweetList
+  },
+  {
+    path: '/auth',
+    name: 'Auth',
+    component: Auth
   }
 ]
 
